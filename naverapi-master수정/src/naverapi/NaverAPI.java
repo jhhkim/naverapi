@@ -22,22 +22,22 @@ import com.kjh.Util;
 import dto.NaverApiDto;
 
 public class NaverAPI {
-	
+
 	public static ArrayList<NaverApiDto> getParsingData(String responseBody) {
 		ArrayList<NaverApiDto> list = new ArrayList<NaverApiDto>();
-		Gson gson = new Gson();			
+		Gson gson = new Gson();
 		JsonObject jsonObject = new Gson().fromJson(responseBody, JsonObject.class);
 		JsonArray jsonArray = jsonObject.getAsJsonArray("items");
-		
+
 		for (JsonElement em : jsonArray) {
 			NaverApiDto dto = gson.fromJson(em, NaverApiDto.class);
 			list.add(dto);
-		
+
 		}
 		return list;
 	}
-	
-	public static String searchNews(String str) {
+
+	public static String naverSrc(String str, String str2) {
 		String[] code = Util.readLineFile("C:/dev/네이버API_시크릿코드.txt").split("\\n");
 //		String[] cArr = code.split("\\n");
 
@@ -51,7 +51,7 @@ public class NaverAPI {
 			throw new RuntimeException("검색어 인코딩 실패", e);
 		}
 
-		String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text; // json 결과
+		String apiURL = "https://openapi.naver.com/v1/search/" + str2 + "?query=" + text; // json 결과
 		// String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
 		// // xml 결과
 
@@ -62,79 +62,24 @@ public class NaverAPI {
 		return responseBody;
 	}
 
-	public static void searchBlog(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/네이버검색 코드.txt").split("\\n");
-//		String[] cArr = code.split("\\n");
-
-		String clientId = code[0]; // 애플리케이션 클라이언트 아이디값"
-		String clientSecret = code[1]; // 애플리케이션 클라이언트 시크릿값"
-
-		String text = null;
-		try {
-			text = URLEncoder.encode(str, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException("검색어 인코딩 실패", e);
-		}
-
-		String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text; // json 결과
-		// String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
-		// // xml 결과
-
-		Map<String, String> requestHeaders = new HashMap<>();
-		requestHeaders.put("X-Naver-Client-Id", clientId);
-		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-		String responseBody = get(apiURL, requestHeaders);
-		System.out.println(responseBody);
+	public static String searchNews(String str) {
+		return naverSrc(str, "news");
 	}
 
-	public static void searchBook(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/네이버검색 코드.txt").split("\\n");
-//		String[] cArr = code.split("\\n");
-
-		String clientId = code[0]; // 애플리케이션 클라이언트 아이디값"
-		String clientSecret = code[1]; // 애플리케이션 클라이언트 시크릿값"
-
-		String text = null;
-		try {
-			text = URLEncoder.encode(str, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException("검색어 인코딩 실패", e);
-		}
-
-		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + text; // json 결과
-		// String apiURL = "https://openapi.naver.com/v1/search/book.xml?query="+ text;
-		// // xml 결과
-
-		Map<String, String> requestHeaders = new HashMap<>();
-		requestHeaders.put("X-Naver-Client-Id", clientId);
-		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-		String responseBody = get(apiURL, requestHeaders);
-		System.out.println(responseBody);
+	public static String searchBlog(String str) {
+		return naverSrc(str, "blog");
 	}
 
-	public static void searcDoc(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/네이버검색 코드.txt").split("\\n");
-//		String[] cArr = code.split("\\n");
+	public static String searchBook(String str) {
+		return naverSrc(str, "book");
+	}
 
-		String clientId = code[0]; // 애플리케이션 클라이언트 아이디값"
-		String clientSecret = code[1]; // 애플리케이션 클라이언트 시크릿값"
-
-		String text = null;
-		try {
-			text = URLEncoder.encode(str, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException("검색어 인코딩 실패", e);
-		}
-
-		String apiURL = "https://openapi.naver.com/v1/search/doc?query=" + text; // json 결과
-		// String apiURL = "https://openapi.naver.com/v1/search/doc.xml?query="+ text;
-		// // xml 결과
-
-		Map<String, String> requestHeaders = new HashMap<>();
-		requestHeaders.put("X-Naver-Client-Id", clientId);
-		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-		String responseBody = get(apiURL, requestHeaders);
-		System.out.println(responseBody);
+	public static String searcDoc(String str) {
+		return naverSrc(str, "doc");
+	}
+	
+	public static String searchMovie(String str) {
+		return naverSrc(str, "movie");
 	}
 
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {

@@ -21,24 +21,32 @@ public class MainClass {
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("원하는 검색 카테고리의 번호를 입력하세요.");
-		System.out.println("1.뉴스 2.블로그 3.책 4.전문자료");
+		System.out.println("1.뉴스 2.블로그 3.책 4.전문자료 5.영화");
 		System.out.print("번호입력: ");
 		int ca = sc.nextInt();
-		String responseBody = null;
 		ArrayList<NaverApiDto> list = null;
+		
 		if (ca == 1) {
-			responseBody = NaverAPI.searchNews(search);
+			String responseBody = NaverAPI.searchNews(search);
+			System.out.println(responseBody);
 			list = NaverAPI.getParsingData(responseBody);
-			for (NaverApiDto dto : list) {
-				System.out.println("제목: " + dto.getTitle()); 
-			}
-
 		} else if (ca == 2) {
-//			NaverAPI.searchBlog(responseBody);
+			String responseBody = NaverAPI.searchBlog(search);
+			list = NaverAPI.getParsingData(responseBody);
 		} else if (ca == 3) {
-//			NaverAPI.searchBlog(responseBody);
+			String responseBody = NaverAPI.searchBook(search);
+			list = NaverAPI.getParsingData(responseBody);
 		} else if (ca == 4) {
-//			NaverAPI.searcDoc(responseBody);
+			String responseBody = NaverAPI.searcDoc(search);
+			list = NaverAPI.getParsingData(responseBody);
+		} else if (ca == 5) {
+			String responseBody = NaverAPI.searchMovie(search);
+			list = NaverAPI.getParsingData(responseBody);
+		}
+		
+		for (NaverApiDto dto : list) {
+			System.out.println("제목: " + dto.getTitle());
+			System.out.println("링크: " + dto.getLink()); 
 		}
 
 	}
