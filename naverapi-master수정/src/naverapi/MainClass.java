@@ -1,5 +1,6 @@
 package naverapi;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
@@ -15,32 +16,29 @@ public class MainClass {
 	public static void main(String[] args) {
 
 		Scanner se = new Scanner(System.in);
-		System.out.println("검색어를 입력하세요.");
-		String responseBody = se.next();
+		System.out.print("검색어를 입력: ");
+		String search = se.next();
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("원하는 검색 카테고리의 번호를 입력하세요.");
 		System.out.println("1.뉴스 2.블로그 3.책 4.전문자료");
+		System.out.print("번호입력: ");
 		int ca = sc.nextInt();
-
+		String responseBody = null;
+		ArrayList<NaverApiDto> list = null;
 		if (ca == 1) {
-			NaverAPI.searchNews(responseBody);
-//			Gson gson = new Gson();			
-//			JsonObject jsonObject = new Gson().fromJson(responseBody, JsonObject.class);
-//			JsonArray jsonArray = jsonObject.getAsJsonArray("items");
-//			
-//			for (JsonElement em : jsonArray) {
-//				NaverApiDto dto = gson.fromJson(em, NaverApiDto.class);
-//				System.out.println(dto.getTitle());
-//				System.out.println(dto.getLink());
-//				System.out.println(dto.getPubDate());
-//			}
+			responseBody = NaverAPI.searchNews(search);
+			list = NaverAPI.getParsingData(responseBody);
+			for (NaverApiDto dto : list) {
+				System.out.println("제목: " + dto.getTitle()); 
+			}
+
 		} else if (ca == 2) {
-			NaverAPI.searchBlog(responseBody);
+//			NaverAPI.searchBlog(responseBody);
 		} else if (ca == 3) {
-			NaverAPI.searchBlog(responseBody);
+//			NaverAPI.searchBlog(responseBody);
 		} else if (ca == 4) {
-			NaverAPI.searcDoc(responseBody);
+//			NaverAPI.searcDoc(responseBody);
 		}
 
 	}

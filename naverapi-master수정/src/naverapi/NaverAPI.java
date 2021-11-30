@@ -9,14 +9,36 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.kjh.Util;
 
+import dto.NaverApiDto;
+
 public class NaverAPI {
-	public static void searchNews(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/네이버검색 코드.txt").split("\\n");
+	
+	public static ArrayList<NaverApiDto> getParsingData(String responseBody) {
+		ArrayList<NaverApiDto> list = new ArrayList<NaverApiDto>();
+		Gson gson = new Gson();			
+		JsonObject jsonObject = new Gson().fromJson(responseBody, JsonObject.class);
+		JsonArray jsonArray = jsonObject.getAsJsonArray("items");
+		
+		for (JsonElement em : jsonArray) {
+			NaverApiDto dto = gson.fromJson(em, NaverApiDto.class);
+			list.add(dto);
+		
+		}
+		return list;
+	}
+	
+	public static String searchNews(String str) {
+		String[] code = Util.readLineFile("C:/dev/네이버API_시크릿코드.txt").split("\\n");
 //		String[] cArr = code.split("\\n");
 
 		String clientId = code[0]; // 애플리케이션 클라이언트 아이디값"
@@ -37,7 +59,7 @@ public class NaverAPI {
 		requestHeaders.put("X-Naver-Client-Id", clientId);
 		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 		String responseBody = get(apiURL, requestHeaders);
-		System.out.println(responseBody);
+		return responseBody;
 	}
 
 	public static void searchBlog(String str) {
