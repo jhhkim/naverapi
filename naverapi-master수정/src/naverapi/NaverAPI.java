@@ -16,110 +16,105 @@ import com.kjh.Util;
 
 public class NaverAPI {
 	public static void searchNews(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/³×ÀÌ¹ö°Ë»ö ÄÚµå.txt").split("\\n");
+		String[] code = Util.readLineFile("C:/Users/user/Desktop/ë„¤ì´ë²„ê²€ìƒ‰ ì½”ë“œ.txt").split("\\n");
 //		String[] cArr = code.split("\\n");
-		
-        String clientId = code[0]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
-        String clientSecret = code[1]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
 
-        String text = null;
-        try {
-            text = URLEncoder.encode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ",e);
-        }
+		String clientId = code[0]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
+		String clientSecret = code[1]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
 
+		String text = null;
+		try {
+			text = URLEncoder.encode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨", e);
+		}
 
-        String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text;    // json °á°ú
-        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml °á°ú
+		String apiURL = "https://openapi.naver.com/v1/search/news?query=" + text; // json ê²°ê³¼
+		// String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
+		// // xml ê²°ê³¼
 
-
-        Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("X-Naver-Client-Id", clientId);
-        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-        String responseBody = get(apiURL,requestHeaders);
-        System.out.println(responseBody);
+		Map<String, String> requestHeaders = new HashMap<>();
+		requestHeaders.put("X-Naver-Client-Id", clientId);
+		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+		String responseBody = get(apiURL, requestHeaders);
+		System.out.println(responseBody);
 	}
-	
+
 	public static void searchBlog(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/³×ÀÌ¹ö°Ë»ö ÄÚµå.txt").split("\\n");
+		String[] code = Util.readLineFile("C:/Users/user/Desktop/ë„¤ì´ë²„ê²€ìƒ‰ ì½”ë“œ.txt").split("\\n");
 //		String[] cArr = code.split("\\n");
-		
-        String clientId = code[0]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
-        String clientSecret = code[1]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
 
-        String text = null;
-        try {
-            text = URLEncoder.encode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ",e);
-        }
+		String clientId = code[0]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
+		String clientSecret = code[1]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
 
+		String text = null;
+		try {
+			text = URLEncoder.encode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨", e);
+		}
 
-        String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text;    // json °á°ú
-        //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml °á°ú
+		String apiURL = "https://openapi.naver.com/v1/search/blog?query=" + text; // json ê²°ê³¼
+		// String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text;
+		// // xml ê²°ê³¼
 
-
-        Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("X-Naver-Client-Id", clientId);
-        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-        String responseBody = get(apiURL,requestHeaders);
-        System.out.println(responseBody);
+		Map<String, String> requestHeaders = new HashMap<>();
+		requestHeaders.put("X-Naver-Client-Id", clientId);
+		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+		String responseBody = get(apiURL, requestHeaders);
+		System.out.println(responseBody);
 	}
-	
+
 	public static void searchBook(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/³×ÀÌ¹ö°Ë»ö ÄÚµå.txt").split("\\n");
+		String[] code = Util.readLineFile("C:/Users/user/Desktop/ë„¤ì´ë²„ê²€ìƒ‰ ì½”ë“œ.txt").split("\\n");
 //		String[] cArr = code.split("\\n");
-		
-        String clientId = code[0]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
-        String clientSecret = code[1]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
 
-        String text = null;
-        try {
-            text = URLEncoder.encode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ",e);
-        }
+		String clientId = code[0]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
+		String clientSecret = code[1]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
 
+		String text = null;
+		try {
+			text = URLEncoder.encode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨", e);
+		}
 
-        String apiURL = "https://openapi.naver.com/v1/search/book?query=" + text;    // json °á°ú
-        //String apiURL = "https://openapi.naver.com/v1/search/book.xml?query="+ text; // xml °á°ú
+		String apiURL = "https://openapi.naver.com/v1/search/book?query=" + text; // json ê²°ê³¼
+		// String apiURL = "https://openapi.naver.com/v1/search/book.xml?query="+ text;
+		// // xml ê²°ê³¼
 
-
-        Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("X-Naver-Client-Id", clientId);
-        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-        String responseBody = get(apiURL,requestHeaders);
-        System.out.println(responseBody);
+		Map<String, String> requestHeaders = new HashMap<>();
+		requestHeaders.put("X-Naver-Client-Id", clientId);
+		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+		String responseBody = get(apiURL, requestHeaders);
+		System.out.println(responseBody);
 	}
-	
+
 	public static void searcDoc(String str) {
-		String[] code = Util.readLineFile("C:/Users/user/Desktop/³×ÀÌ¹ö°Ë»ö ÄÚµå.txt").split("\\n");
+		String[] code = Util.readLineFile("C:/Users/user/Desktop/ë„¤ì´ë²„ê²€ìƒ‰ ì½”ë“œ.txt").split("\\n");
 //		String[] cArr = code.split("\\n");
-		
-        String clientId = code[0]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ¾ÆÀÌµğ°ª"
-        String clientSecret = code[1]; //¾ÖÇÃ¸®ÄÉÀÌ¼Ç Å¬¶óÀÌ¾ğÆ® ½ÃÅ©¸´°ª"
 
-        String text = null;
-        try {
-            text = URLEncoder.encode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("°Ë»ö¾î ÀÎÄÚµù ½ÇÆĞ",e);
-        }
+		String clientId = code[0]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì•„ì´ë””ê°’"
+		String clientSecret = code[1]; // ì• í”Œë¦¬ì¼€ì´ì…˜ í´ë¼ì´ì–¸íŠ¸ ì‹œí¬ë¦¿ê°’"
 
+		String text = null;
+		try {
+			text = URLEncoder.encode(str, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException("ê²€ìƒ‰ì–´ ì¸ì½”ë”© ì‹¤íŒ¨", e);
+		}
 
-        String apiURL = "https://openapi.naver.com/v1/search/doc?query=" + text;    // json °á°ú
-        //String apiURL = "https://openapi.naver.com/v1/search/doc.xml?query="+ text; // xml °á°ú
+		String apiURL = "https://openapi.naver.com/v1/search/doc?query=" + text; // json ê²°ê³¼
+		// String apiURL = "https://openapi.naver.com/v1/search/doc.xml?query="+ text;
+		// // xml ê²°ê³¼
 
-
-        Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("X-Naver-Client-Id", clientId);
-        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-        String responseBody = get(apiURL,requestHeaders);
-        System.out.println(responseBody);
+		Map<String, String> requestHeaders = new HashMap<>();
+		requestHeaders.put("X-Naver-Client-Id", clientId);
+		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+		String responseBody = get(apiURL, requestHeaders);
+		System.out.println(responseBody);
 	}
-	
-	
+
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {
 		HttpURLConnection con = connect(apiUrl);
 		try {
@@ -129,13 +124,13 @@ public class NaverAPI {
 			}
 
 			int responseCode = con.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) { // Á¤»ó È£Ãâ
+			if (responseCode == HttpURLConnection.HTTP_OK) { // ì •ìƒ í˜¸ì¶œ
 				return readBody(con.getInputStream());
-			} else { // ¿¡·¯ ¹ß»ı
+			} else { // ì—ëŸ¬ ë°œìƒ
 				return readBody(con.getErrorStream());
 			}
 		} catch (IOException e) {
-			throw new RuntimeException("API ¿äÃ»°ú ÀÀ´ä ½ÇÆĞ", e);
+			throw new RuntimeException("API ìš”ì²­ê³¼ ì‘ë‹µ ì‹¤íŒ¨", e);
 		} finally {
 			con.disconnect();
 		}
@@ -146,9 +141,9 @@ public class NaverAPI {
 			URL url = new URL(apiUrl);
 			return (HttpURLConnection) url.openConnection();
 		} catch (MalformedURLException e) {
-			throw new RuntimeException("API URLÀÌ Àß¸øµÇ¾ú½À´Ï´Ù. : " + apiUrl, e);
+			throw new RuntimeException("API URLì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. : " + apiUrl, e);
 		} catch (IOException e) {
-			throw new RuntimeException("¿¬°áÀÌ ½ÇÆĞÇß½À´Ï´Ù. : " + apiUrl, e);
+			throw new RuntimeException("ì—°ê²°ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. : " + apiUrl, e);
 		}
 	}
 
@@ -165,7 +160,7 @@ public class NaverAPI {
 
 			return responseBody.toString();
 		} catch (IOException e) {
-			throw new RuntimeException("API ÀÀ´äÀ» ÀĞ´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù.", e);
+			throw new RuntimeException("API ì‘ë‹µì„ ì½ëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.", e);
 		}
 	}
 

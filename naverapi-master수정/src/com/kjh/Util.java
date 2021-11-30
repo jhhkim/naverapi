@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Util {
-	// ¿À´Ã ³¯Â¥¸¦ °¡Á® ¿À´Â ¸Ş¼Òµå(yyyy-MM-dd)
-    public static String getCurrentDate(String fmt) {
-        SimpleDateFormat sdf = new SimpleDateFormat(fmt);
-        return sdf.format(new Date());
-    }
-    
-    // ÆÄÀÏ ÀĞ¾î¼­ È­¸é¿¡ Ãâ·Â(ÆÄÀÏ ³»¿ëÀ» ¿©±â ¸Ş¼Òµå ¹ÛÀ¸·Î º¸³»°í ½Í´Ù)
-    public static String readLineFile(String filePath) {
+	// ì˜¤ëŠ˜ ë‚ ì§œë¥¼ ê°€ì ¸ ì˜¤ëŠ” ë©”ì†Œë“œ(yyyy-MM-dd)
+	public static String getCurrentDate(String fmt) {
+		SimpleDateFormat sdf = new SimpleDateFormat(fmt);
+		return sdf.format(new Date());
+	}
+
+	// íŒŒì¼ ì½ì–´ì„œ í™”ë©´ì— ì¶œë ¥(íŒŒì¼ ë‚´ìš©ì„ ì—¬ê¸° ë©”ì†Œë“œ ë°–ìœ¼ë¡œ ë³´ë‚´ê³  ì‹¶ë‹¤)
+	public static String readLineFile(String filePath) {
 		BufferedReader br = null;
 		String retLine = "";
 //		StringBuffer sb = new StringBuffer();
@@ -27,10 +27,10 @@ public class Util {
 				String line = br.readLine();
 				if (line == null)
 					break;
-				
-				retLine += line + "\n";  // ¹®ÀÚ¿­À» ¸®ÅÏ
+
+				retLine += line + "\n"; // ë¬¸ìì—´ì„ ë¦¬í„´
 //				sb.append(line + "\n");
-//				System.out.println(line);   // È­¸é¿¡ Ãâ·Â
+//				System.out.println(line);   // í™”ë©´ì— ì¶œë ¥
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -41,42 +41,42 @@ public class Util {
 				e.printStackTrace();
 			}
 		}
-		return retLine;   // sb.toString()
+		return retLine; // sb.toString()
 //		return sb.toString(); 
-    }
-    
-    // ÆÄÀÏ ¾²±â(»õÆÄÀÏ·Î ¾²±â, µ¤¾î¾²±â)
-    public static void writeLineFile(ArrayList<String> strList, String filePath) {
+	}
+
+	// íŒŒì¼ ì“°ê¸°(ìƒˆíŒŒì¼ë¡œ ì“°ê¸°, ë®ì–´ì“°ê¸°)
+	public static void writeLineFile(ArrayList<String> strList, String filePath) {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(filePath);
-	        for(String s : strList) {
-	            out.println(s);
-	        }
+			for (String s : strList) {
+				out.println(s);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			out.close();
 		}
-    }
-    
-    // 	ÆÄÀÏ ¾²±â(ÀÌ¾î ¾²±â)
-    public static void writeLineFile(ArrayList<String> strList, String filePath, boolean isAppend) {
+	}
+
+	// íŒŒì¼ ì“°ê¸°(ì´ì–´ ì“°ê¸°)
+	public static void writeLineFile(ArrayList<String> strList, String filePath, boolean isAppend) {
 		PrintWriter out = null;
 		try {
 			out = new PrintWriter(new FileWriter(filePath, isAppend));
-	        for(String s : strList) {
-	            out.println(s);
-	        }
+			for (String s : strList) {
+				out.println(s);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			out.close();
 		}
-    }
-    
-    // ³»°¡ ¸¸µç ¹®ÀÚ¿­À» Àß¶ó¼­ µ¥ÀÌÅÍ Àü´Ş
-    public static void mySplit(String str, String regex1, String regex2) {
+	}
+
+	// ë‚´ê°€ ë§Œë“  ë¬¸ìì—´ì„ ì˜ë¼ì„œ ë°ì´í„° ì „ë‹¬
+	public static void mySplit(String str, String regex1, String regex2) {
 		String[] strArr = str.split(regex1);
 		for (String s : strArr) {
 //			System.out.println(s);
@@ -86,7 +86,7 @@ public class Util {
 //			}
 //			System.out.println(tmpArr.length);
 			for (int i = 0; i < tmpArr.length; i++) {
-				if (i == tmpArr.length-1) {
+				if (i == tmpArr.length - 1) {
 					System.out.print(tmpArr[i]);
 				} else {
 					System.out.print(tmpArr[i] + " / ");
@@ -95,6 +95,6 @@ public class Util {
 			System.out.println();
 
 		}
-    }
+	}
 
 }

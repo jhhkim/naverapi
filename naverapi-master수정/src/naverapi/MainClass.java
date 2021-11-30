@@ -10,22 +10,20 @@ import com.google.gson.JsonObject;
 import dto.NaverApiDto;
 import naverapi.NaverAPI;
 
-
 public class MainClass {
 
 	public static void main(String[] args) {
-		
+
 		Scanner se = new Scanner(System.in);
-		System.out.println("°Ë»ö¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+		System.out.println("ê²€ìƒ‰ì–´ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 		String responseBody = se.next();
-		
-		Scanner sc= new Scanner(System.in);
-		System.out.println("¿øÇÏ´Â °Ë»ö Ä«Å×°í¸®ÀÇ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
-		System.out.println("1.´º½º 2.ºí·Î±× 3.Ã¥ 4.Àü¹®ÀÚ·á");
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ì›í•˜ëŠ” ê²€ìƒ‰ ì¹´í…Œê³ ë¦¬ì˜ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+		System.out.println("1.ë‰´ìŠ¤ 2.ë¸”ë¡œê·¸ 3.ì±… 4.ì „ë¬¸ìë£Œ");
 		int ca = sc.nextInt();
 
-		
-		if (ca==1) {
+		if (ca == 1) {
 			NaverAPI.searchNews(responseBody);
 //			Gson gson = new Gson();			
 //			JsonObject jsonObject = new Gson().fromJson(responseBody, JsonObject.class);
@@ -37,14 +35,13 @@ public class MainClass {
 //				System.out.println(dto.getLink());
 //				System.out.println(dto.getPubDate());
 //			}
-		} else if (ca==2) {
-				NaverAPI.searchBlog(responseBody);
-		} else if (ca==3) {
-				NaverAPI.searchBlog(responseBody);
-		} else if (ca==4) {
-				NaverAPI.searcDoc(responseBody);
+		} else if (ca == 2) {
+			NaverAPI.searchBlog(responseBody);
+		} else if (ca == 3) {
+			NaverAPI.searchBlog(responseBody);
+		} else if (ca == 4) {
+			NaverAPI.searcDoc(responseBody);
 		}
-
 
 	}
 

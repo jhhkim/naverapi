@@ -1,31 +1,35 @@
 package dto;
 
 public class NaverApiDto {
-	// Á¦¸ñ
-		private String title;
-		// ¸µÅ©
-		private String link;
-		// ³¯Â¥
-		private String pubDate;
-		
-		public String getTitle() {
-			return title;
-		}
-		public void setTitle(String title) {
-			this.title = title;
-		}
-		public String getLink() {
-			return link;
-		}
-		public void setLink(String link) {
-			this.link = link;
-		}
-		public String getPubDate() {
-			return pubDate;
-		}
-		public void setPubDate(String pubDate) {
-			this.pubDate = pubDate;
-		}
-		
-		
+	// ì œëª©
+	private String title;
+	// ë§í¬
+	private String link;
+	// ë‚ ì§œ
+	private String pubDate;
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getPubDate() {
+		return pubDate;
+	}
+
+	public void setPubDate(String pubDate) {
+		this.pubDate = pubDate;
+	}
+
 }
